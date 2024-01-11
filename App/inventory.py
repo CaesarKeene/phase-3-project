@@ -2,3 +2,6 @@ from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateT
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 from datetime import datetime
 import click
+
+Base = declarative_base() 
+
