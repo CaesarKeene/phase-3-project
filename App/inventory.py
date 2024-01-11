@@ -54,4 +54,29 @@ def view_items_by_category(category_name):
         else:
             click.echo(f"No items found in Category '{category_name}'.")
     else:
-        click.echo(f"Category '{category_name}' not found.")
+        click.echo(f"Category '{category_name}' not found.") 
+
+def add_item(name, category_name, supplier_name):
+    category = session.query(Category).filter_by(name=category_name).first()
+    supplier = session.query(Supplier).filter_by(name=supplier_name).first()
+    
+    if category and supplier:
+        new_item = Item(name=name, category=category, supplier=supplier)
+        session.add(new_item)
+        session.commit()
+        click.echo(f"Item '{name}' added to Category '{category_name}' from Supplier '{supplier_name}' successfully.")
+    else:
+        if not category:
+            click.echo(f"Category '{category_name}' not found. Please add the category first.")
+        if not supplier:
+            click.echo(f"Supplier '{supplier_name}' not found. Please add the supplier first.") 
+
+def remove_item(name):
+    item = session.query(Item).filter_by(name=name).first()
+    if item:
+        session.delete(item)
+        session.commit()
+        click.echo(f"Item '{name}' removed from inventory.")
+    else:
+        click.echo(f"Item '{name}' not found in inventory.") 
+
