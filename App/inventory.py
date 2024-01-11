@@ -40,4 +40,18 @@ def create_database():
 def add_category(name):
     new_category = Category(name=name)
     session.add(new_category)
-    session.commit()
+    session.commit() 
+
+
+def view_items_by_category(category_name):
+    category = session.query(Category).filter_by(name=category_name).first()
+    if category:
+        items = category.items
+        if items:
+            click.echo(f"\nItems in Category '{category_name}':")
+            for item in items:
+                click.echo(item.name)
+        else:
+            click.echo(f"No items found in Category '{category_name}'.")
+    else:
+        click.echo(f"Category '{category_name}' not found.")
