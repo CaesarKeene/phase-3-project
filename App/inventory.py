@@ -33,6 +33,7 @@ class Supplier(Base):
     name = Column(String)
     supplied_items = relationship('Item', back_populates='supplier')
 
+
 def create_database():
     Base.metadata.create_all(engine)
 
@@ -56,6 +57,7 @@ def view_items_by_category(category_name):
     else:
         click.echo(f"Category '{category_name}' not found.") 
 
+
 def add_item(name, category_name, supplier_name):
     category = session.query(Category).filter_by(name=category_name).first()
     supplier = session.query(Supplier).filter_by(name=supplier_name).first()
@@ -71,6 +73,7 @@ def add_item(name, category_name, supplier_name):
         if not supplier:
             click.echo(f"Supplier '{supplier_name}' not found. Please add the supplier first.") 
 
+
 def remove_item(name):
     item = session.query(Item).filter_by(name=name).first()
     if item:
@@ -80,11 +83,13 @@ def remove_item(name):
     else:
         click.echo(f"Item '{name}' not found in inventory.") 
 
+
 def add_supplier(name):
     new_supplier = Supplier(name=name)
     session.add(new_supplier)
     session.commit()
     click.echo(f"Supplier '{name}' added successfully.")
+
 
 def view_suppliers():
     suppliers = session.query(Supplier).all()
@@ -135,6 +140,7 @@ def main():
             break
         else:
             click.echo("Invalid choice. Please enter a number between 1 and 7.")
+
 
 if __name__ == "__main__":
     main() 
