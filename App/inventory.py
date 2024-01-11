@@ -110,3 +110,31 @@ def main():
         click.echo("6. View Suppliers")
         click.echo("7. Exit")
         choice = click.prompt("Enter your choice (1-7)", type=int) 
+
+        if choice == 1:
+            name = click.prompt("Enter the category name")
+            add_category(name)
+        elif choice == 2:
+            category_name = click.prompt("Enter the category name to view items")
+            view_items_by_category(category_name)
+        elif choice == 3:
+            name = click.prompt("Enter the item name")
+            category_name = click.prompt("Enter the category name")
+            supplier_name = click.prompt("Enter the supplier name")
+            add_item(name, category_name, supplier_name)
+        elif choice == 4:
+            name = click.prompt("Enter the item name to remove")
+            remove_item(name)
+        elif choice == 5:
+            name = click.prompt("Enter the supplier name")
+            add_supplier(name)
+        elif choice == 6:
+            view_suppliers()
+        elif choice == 7:
+            click.echo("Exiting Inventory Management System. Goodbye!")
+            break
+        else:
+            click.echo("Invalid choice. Please enter a number between 1 and 7.")
+
+if __name__ == "__main__":
+    main() 
