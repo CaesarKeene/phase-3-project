@@ -33,3 +33,11 @@ class Supplier(Base):
     name = Column(String)
     supplied_items = relationship('Item', back_populates='supplier')
 
+def create_database():
+    Base.metadata.create_all(engine)
+
+
+def add_category(name):
+    new_category = Category(name=name)
+    session.add(new_category)
+    session.commit()
