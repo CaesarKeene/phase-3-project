@@ -85,3 +85,12 @@ def add_supplier(name):
     session.add(new_supplier)
     session.commit()
     click.echo(f"Supplier '{name}' added successfully.")
+
+def view_suppliers():
+    suppliers = session.query(Supplier).all()
+    if suppliers:
+        click.echo("\nSuppliers:")
+        for supplier in suppliers:
+            click.echo(supplier.name)
+    else:
+        click.echo("No suppliers in the database.")
