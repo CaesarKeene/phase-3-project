@@ -94,3 +94,19 @@ def view_suppliers():
             click.echo(supplier.name)
     else:
         click.echo("No suppliers in the database.")
+
+
+@click.command()
+def main():
+    create_database()
+
+    while True:
+        click.echo("\nInventory Management System")
+        click.echo("1. Add Category")
+        click.echo("2. View Items by Category")
+        click.echo("3. Add Item")
+        click.echo("4. Remove Item")
+        click.echo("5. Add Supplier")
+        click.echo("6. View Suppliers")
+        click.echo("7. Exit")
+        choice = click.prompt("Enter your choice (1-7)", type=int) 
