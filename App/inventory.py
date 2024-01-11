@@ -25,3 +25,11 @@ class Category(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     items = relationship('Item', back_populates='category')
+
+
+class Supplier(Base):
+    __tablename__ = 'suppliers'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    supplied_items = relationship('Item', back_populates='supplier')
+
