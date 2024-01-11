@@ -17,4 +17,11 @@ class Item(Base):
     category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship('Category', back_populates='items')
     supplier_id = Column(Integer, ForeignKey('suppliers.id'))
-    supplier = relationship('Supplier', back_populates='supplied_items')
+    supplier = relationship('Supplier', back_populates='supplied_items') 
+
+
+class Category(Base):
+    __tablename__ = 'categories'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    items = relationship('Item', back_populates='category')
