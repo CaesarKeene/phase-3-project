@@ -80,3 +80,8 @@ def remove_item(name):
     else:
         click.echo(f"Item '{name}' not found in inventory.") 
 
+def add_supplier(name):
+    new_supplier = Supplier(name=name)
+    session.add(new_supplier)
+    session.commit()
+    click.echo(f"Supplier '{name}' added successfully.")
